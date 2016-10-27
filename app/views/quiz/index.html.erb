@@ -1,0 +1,21 @@
+<h1> Flashcards </h1>
+<% if flash[:notice] %>
+  <div class="notice" style="color:red"><%= flash[:notice] %></div>
+<% end %>
+
+<p> Highest Score: <%= @user.highest_score %>  </p>
+<p> <%= @flashcard.attempts %> attempts left </p>
+
+
+<label for="content"> Question: </label>
+<p> <%= @flashcard.question %> </p>
+<form action="/quiz/check_answer" method="get">
+  <input type="text" name="answer">
+  <input type="hidden" name="id" value="<%= @flashcard.id %>">
+  <input type="hidden" name="attempts" value="<%= @flashcard.attempts %>">
+  <button type="submit" >Answer Question </button>
+</form>
+
+<form action="/quiz/next/<%= @flashcard.id %>">
+    <input type="submit" value="Next Question" />
+</form>
