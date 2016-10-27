@@ -2,18 +2,9 @@ class QuizController < ApplicationController
 
   def index
     if params[:id]
-      @user = User.first
       @flashcard = Flashcard.find(params[:id]).next
 
-      if @flashcard == nil
-        @number = @user.highest_score
-        @user.delete
-        render 'end.html.erb'
-      end
     else
-       @user = User.new
-       @user.highest_score = 0
-       @user.save
       @flashcard = Flashcard.first
     end
 
@@ -27,10 +18,6 @@ class QuizController < ApplicationController
 
     if @flashcard.answer == answer
       flash[:notice] = "Correct Answer"
-
-      @user = User.first
-      @user.highest_score = @user.highest_score + 1
-      @user.save
 
       redirect_to :action => "index", :id => params[:id] and return
     else

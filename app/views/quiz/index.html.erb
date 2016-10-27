@@ -3,7 +3,6 @@
   <div class="notice" style="color:red"><%= flash[:notice] %></div>
 <% end %>
 
-<p> Highest Score: <%= @user.highest_score %>  </p>
 <p> <%= @flashcard.attempts %> attempts left </p>
 
 
@@ -13,6 +12,7 @@
   <input type="text" name="answer">
   <input type="hidden" name="id" value="<%= @flashcard.id %>">
   <input type="hidden" name="attempts" value="<%= @flashcard.attempts %>">
+  <input type="hidden" name="score" value="<%= @score %>">
   <button type="submit" >Answer Question </button>
 </form>
 
