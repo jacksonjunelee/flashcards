@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
-
   root 'welcome#index'
-  resources :flashcards, only: [:index, :show, :destroy]
+  resources :flashcards, except: ['index']
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
